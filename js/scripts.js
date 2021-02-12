@@ -3,13 +3,15 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
 
+//Função para começar o jogo
+
 //função para virar carta
 function flipCard() {
-    if(lockBoard) return;
-    if(this === firstCard) return;
+    if (lockBoard) return;
+    if (this === firstCard) return;
 
     this.classList.add('flip');
-    if(!hasFlippedCard) {
+    if (!hasFlippedCard) {
         hasFlippedCard = true;
         firstCard = this;
         return;
@@ -22,7 +24,7 @@ function flipCard() {
 
 //função que checa se as cartas são iguais
 function checkForMatch() {
-    if(firstCard.dataset.card === secondCard.dataset.card) {
+    if (firstCard.dataset.card === secondCard.dataset.card) {
         disableCards();
         return;
     }
@@ -50,7 +52,7 @@ function unflipCards() {
     }, 1500);
 }
 
-//função que reseta o tabuleiro
+//função que reseta as cartas
 function resetBoard() {
     [hasFlippedCard, lockBoard] = [false, false];
     [firstCard, secondCard] = [null, null];
@@ -59,10 +61,12 @@ function resetBoard() {
 //função que embaralha as cartas
 (function shuffle() {
     cards.forEach((card) => {
-        let ramdomPosition = Math.floor(Math.random() * 12);
-        card.style.order = ramdomPosition;
+        let randomPosition = Math.floor(Math.random() * 12);
+        card.style.order = randomPosition;
     })
 })();
+
+//Função para resetar o quadro
 
 //adiciona evento de clique na carta
 cards.forEach((card) => {
